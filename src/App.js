@@ -2,19 +2,32 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
-  const body = document.body;
+  const [counter, setCounter] = useState(0);
 
-  darkMode ? body.classList.add(`dark`) : body.classList.remove(`dark`);
   return (
     <div className="App">
       <button
         onClick={() => {
-          setDarkMode(!darkMode);
+          setCounter(counter + 1);
         }}
       >
-        {darkMode ? `Dark` : `Light`}
+        Increase
       </button>
+      <button
+        onClick={() => {
+          setCounter(counter - 1);
+        }}
+      >
+        Decrease
+      </button>
+      <button
+        onClick={() => {
+          setCounter(0);
+        }}
+      >
+        Set to Zero
+      </button>
+      <h4>Counter: {counter}</h4>
     </div>
   );
 }
