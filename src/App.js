@@ -2,32 +2,32 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-  const [counter, setCounter] = useState(0);
+  const [count, setCount] = useState(0);
 
   return (
     <div className="App">
       <button
         onClick={() => {
-          setCounter(counter + 1);
+          setCount(count + 1);
         }}
       >
         Increase
       </button>
       <button
         onClick={() => {
-          setCounter(counter - 1);
+          setCount(count - 1);
         }}
       >
         Decrease
       </button>
       <button
         onClick={() => {
-          setCounter(0);
+          setCount(0);
         }}
       >
         Set to Zero
       </button>
-      <h4>Counter: {counter}</h4>
+      <h4>Count: {count}</h4>
     </div>
   );
 }
