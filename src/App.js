@@ -1,6 +1,12 @@
 import { useState } from "react";
 import "./App.css";
 import Task from "./components/Task";
+const myStyles = {
+  table: {
+    fontFamily: "Poppins",
+  },
+};
+
 function App() {
   const [todoList, setTodoList] = useState([]);
   const [newTask, setNewTask] = useState("");
@@ -19,20 +25,36 @@ function App() {
   const deleteTask = (id) => {
     setTodoList(todoList.filter((task) => task.id !== id));
   };
+
+  const handleKeyDown = (event) => {
+    console.log("User pressed: ", event.key);
+
+    // console.log(message);
+
+    if (event.key === "Enter") {
+      // 👇️ your logic here
+      addTask();
+    }
+  };
+
   return (
     <div className="App">
       <div className="addTask">
-        <input type="text" onChange={handleChange} />
+        <input type="text" onChange={handleChange} onKeyDown={handleKeyDown} />
         <button onClick={addTask}>Add Task</button>
       </div>
       <div className="list">
-        <table
-          style={{ border: "1px solid black", borderCollapse: "collapse" }}
-        >
+        <table style={myStyles.table}>
           <tbody>
             {todoList.map((task) => {
-              return(
-              <Task taskName={task.taskName} id={task.id} deleteTask={deleteTask}/>);
+              return (
+                <Task
+                  taskName={task.taskName}
+                  id={task.id}
+                  key={task.id}
+                  deleteTask={deleteTask}
+                />
+              );
             })}
           </tbody>
         </table>
